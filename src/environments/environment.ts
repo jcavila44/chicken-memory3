@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig = {
+    apiKey: "AIzaSyCP91m5a1Oq2CWskwewD2I3z2BjvoOE4xc",
+    authDomain: "chicken-memory-ecd54.firebaseapp.com",
+    projectId: "chicken-memory-ecd54",
+    storageBucket: "chicken-memory-ecd54.appspot.com",
+    messagingSenderId: "271016625667",
+    appId: "1:271016625667:web:29f49bc885ea055d947036",
+    databaseURL: "https://chicken-memory-ecd54-default-rtdb.firebaseio.com/"
+  }
 };
 
 /*
