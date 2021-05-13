@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig = {
+  firebaseConfig : {
     apiKey: "AIzaSyCP91m5a1Oq2CWskwewD2I3z2BjvoOE4xc",
     authDomain: "chicken-memory-ecd54.firebaseapp.com",
     projectId: "chicken-memory-ecd54",
