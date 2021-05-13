@@ -1,3 +1,28 @@
-<p>
-  registro-usuario works!
-</p>
+<ion-content>
+    <div class="container">
+      <div class="row">
+        <div class="col-mb-12">
+          <form class="row">
+            <div class="mb-2 text-center">
+              <h3>Registro</h3>
+            </div>
+            <ion-item class="mb-3 p-0">
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input type="text" formControlName="nombreUsuario" required></ion-input>
+            </ion-item>
+            <ion-item class="mb-3 p-0">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="emailUsuario" required></ion-input>
+            </ion-item>
+            <ion-item class="p-0">
+              <ion-label position="floating">Edad</ion-label>
+              <ion-input type="number" formControlName="edadUsuario" required></ion-input>
+            </ion-item>
+            <div class="col-12 col-md-3 text-center mt-4 p-0">
+              <button type="button" class="btn btn-primary btn-block">Play</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+ </ion-content>
