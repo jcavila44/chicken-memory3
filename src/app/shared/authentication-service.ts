@@ -91,9 +91,13 @@ export class AuthenticationService {
     })
   }
 
-   // Sign in with Gmail
-   FBAuth() {
+   // Sign in with faceboock
+  FBAuth() {
     return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
+  }
+   // Sign in with twitter
+  TwitterAuth() {
+    return this.AuthLogin(new firebase.auth.TwitterAuthProvider());
   }
 
 
