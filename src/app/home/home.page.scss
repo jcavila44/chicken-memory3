@@ -25,3 +25,27 @@
 #container a {
   text-decoration: none;
 }
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.padre {
+  display: flex;
+  justify-content: center;
+}
+.tittle{
+
+  text-align: center;
+}
+
+
+  * {
+    font-size: 1.0rem;
+  }
+  
+  :root {
+    font-size: 0.8rem;
+  }
