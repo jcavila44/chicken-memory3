@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   public cardsArray = [];	// Almacen de pares de tarjetas
   public userLife = 5;		// Total amount of tries user gets
   public imageDir = '../../assets/img/fruits/';
+  public imageBack = '../../assets/img/cards/background.png'
   public images = ['apple', 'strawberry', 'apple-green', 'cherry', 'grape-green', 'grape-purple', 'peach', 'pear'];
 
   public selectCard1pos = -1;	// Selección tarjeta #1 posición
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
   public selectCard2val = -1;	// Selección tarjeta #2 valor
   public selectOldPosix = -1; // Alamacen de posiciones
 
-  public debugText = "Mensaje de prueba"
+  public debugText = '';
 
   constructor() { }
 
@@ -57,12 +58,12 @@ export class DashboardComponent implements OnInit {
     if (this.selectCard1pos > -1 && this.selectCard2pos > -1) {
       setTimeout(() => {
         if (this.selectCard1val == this.selectCard2val) {
-          this.debugText = "pareja encontrada";
+          this.debugText = 'pareja encontrada';
           this.cardsArray.splice(this.selectOldPosix, 1, {pos: this.selectOldPosix, val: -1});
           this.cardsArray.splice(i, 1, {pos: i, val: -1});
           this.resetSelects();
         } else {
-          this.debugText = "Sigue intentando";
+          this.debugText = 'Sigue intentando';
           this.userLife -= 1;
           this.resetSelects();
 
