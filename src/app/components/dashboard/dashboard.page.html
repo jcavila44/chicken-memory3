@@ -4,34 +4,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="background">
-	<div align = "center">
+<ion-content class = "background">
+
+  <div align = "center">
 		<h2>Encuentra las parejas para ganar</h2>
 	</div>
 
+  <div align = "center">
+    <h5>Turnos restantes: {{ userLife }}</h5>
+    6 parejas para ser ganador
+	</div>
+
   <ion-grid>
-    <ion-row align-items-center text-center size="8">
+    
+    <ion-row>
       <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
+
         <img [src] = "imageBack"
           *ngIf = "c.pos != selectCard1pos && c.pos != selectCard2pos && c.val > -1"
           (click) = "selectCard(c.pos, c.val, i)"
           class = "imagen-card">
 
-        <img [src] = "imageDir + images[c.val] + '.jpg'"
+        <img [src] = "imageDir + images[c.val] + '.png'"
           *ngIf = "c.pos == selectCard1pos && c.val > -1"
           class = "imagen-card">
         
-        <img [src] = "imageDir + images[c.val] + '.jpg'"
+        <img [src] = "imageDir + images[c.val] + '.png'"
           *ngIf = "c.pos == selectCard2pos && c.val > -1"
           class = "imagen-card">
 
-        <img *ngIf="c.val == -1"
-          style="visibility: hidden;">
+        <img *ngIf="c.val == -1" style = "visibility: hidden;">
+
       </ion-col>
     </ion-row>
-  
+
     <ion-row>
       <ion-col>
+        <br/>
         <div align = "center">
           <ion-button
             type="button"
@@ -44,10 +53,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <div align = "center">
-    <h5>Turnos restantes: {{ userLife }}</h5>
-    6 parejas para ser ganador
-	</div>
-
 </ion-content>

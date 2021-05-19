@@ -11,8 +11,9 @@ export class DashboardComponent implements OnInit {
   public cardsArray = [];	// Almacen de pares de tarjetas
   public userLife = 5;		// Total amount of tries user gets
   public imageDir = '../../assets/img/fruits/';
-  public imageBack = '../../assets/img/cards/background.png'
-  public images = ['apple', 'strawberry', 'apple-green', 'cherry', 'grape-green', 'grape-purple', 'peach', 'pear'];
+  public imageBack = '../../assets/img/cards/back.png'
+  public images = ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6'];
+  //['apple', 'strawberry', 'apple-green', 'cherry', 'grape-green', 'grape-purple', 'peach', 'pear'];
 
   public selectCard1pos = -1;	// Selección tarjeta #1 posición
   public selectCard1val = -1;	// Selección tarjeta #1 valor
