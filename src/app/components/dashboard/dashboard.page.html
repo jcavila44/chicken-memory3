@@ -1,6 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Level 1</ion-title>
+    <ion-title>Chicken Memory</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="background">
+	<div align="center">
+		<h2>Encuentra las parejas para ganar</h2>
+	</div>
+
+  <ion-row align-items-center text-center size="8">
+
+		<ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
+			<img src="../../assets/img/cards/background.png"
+        *ngIf="c.pos != selectCard1pos && c.pos != selectCard2pos && c.val > -1"
+        (click)="selectCard(c.pos, c.val, i)"
+        style="width:80px; height:80px; border: solid 2px #000; border-radius: 12px;">
+
+			<img [src]="imageDir + images[c.val] + '.jpg'"
+        *ngIf="c.pos == selectCard1pos && c.val > -1"
+        style="width:80px; height:80px; border: solid 2px #000; border-radius: 12px;">
+      
+      <img [src]="imageDir + images[c.val] + '.jpg'"
+        *ngIf="c.pos == selectCard2pos && c.val > -1"
+        style="width:80px; height:80px; border: solid 2px #000; border-radius: 12px;">
+
+      <img *ngIf="c.val == -1"
+        style="width:80px; height:80px; border: solid 2px #000; border-radius: 12px; visibility: hidden;">
+		</ion-col>
+
+	</ion-row>
+
+  <ion-row class="boton">
+    <ion-button
+        type="button"
+        color="primary"
+        expand="block"
+        (click)="restartGame()">
+        <ion-icon name="refresh-outline"></ion-icon>
+          Reiniciar
+    </ion-button>
+  </ion-row>
+
+  <div align="center">
+    <h5>User life: {{ userLife }}</h5>
+	</div>
+
+</ion-content>
