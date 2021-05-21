@@ -9,19 +9,22 @@ export class DashboardComponent implements OnInit {
 
   public cardsTotal = 12;	// Total tarjetas (divididas por 2)
   public cardsArray = [];	// Almacen de pares de tarjetas
-  public userLife = 5;		// Total amount of tries user gets
+  public userLife = 5;		// Total intentos por usuario
+  public userWin = 6;     // Total pares para ganar
+  public score = 0;       // Puntaje obtenido
+  public debugText = '';  // variable para mensaje de pantalla
+
   public imageDir = '../../assets/img/fruits/';
-  public imageBack = '../../assets/img/cards/back.png'
+  public imageBack = '../../assets/img/cards/back.png';
+  public imageWhite = '../../assets/img/cards/backWhite.png';
+  public imageWin = '../../assets/img/gif/userWin.gif';
   public images = ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6'];
-  //['apple', 'strawberry', 'apple-green', 'cherry', 'grape-green', 'grape-purple', 'peach', 'pear'];
 
   public selectCard1pos = -1;	// Selección tarjeta #1 posición
   public selectCard1val = -1;	// Selección tarjeta #1 valor
   public selectCard2pos = -1;	// Selección tarjeta #2 posición
   public selectCard2val = -1;	// Selección tarjeta #2 valor
   public selectOldPosix = -1; // Alamacen de posiciones
-
-  public debugText = '';
 
   constructor() { }
 
@@ -62,10 +65,13 @@ export class DashboardComponent implements OnInit {
           this.debugText = 'pareja encontrada';
           this.cardsArray.splice(this.selectOldPosix, 1, {pos: this.selectOldPosix, val: -1});
           this.cardsArray.splice(i, 1, {pos: i, val: -1});
+          this.score += 10;
+          this.userWin -= 1;
           this.resetSelects();
         } else {
           this.debugText = 'Sigue intentando';
           this.userLife -= 1;
+          this.score -= 5;
           this.resetSelects();
 
           if (this.userLife <= 0) this.restartGame();
@@ -86,6 +92,8 @@ export class DashboardComponent implements OnInit {
 
   restartGame() {
     this.userLife = 5;
+    this.userWin = 6;
+    this.score = 0;
     this.resetSelects();
     this.populateCards();
     this.shuffle(this.cardsArray);
@@ -93,9 +101,10 @@ export class DashboardComponent implements OnInit {
   }
 
   resetSelects() {
-		this.selectCard1pos = -1;	// Selected card #1 position
-    this.selectCard1val = -1;	// Selected card #1 value
-    this.selectCard2pos = -1;	// Selected card #2 position
-    this.selectCard2val = -1;	// Selected card #2 value
+		this.selectCard1pos = -1;	// Selección tarjeta #1 posición
+    this.selectCard1val = -1;	// Selección tarjeta #1 valor
+    this.selectCard2pos = -1;	// Selección tarjeta #2 posición
+    this.selectCard2val = -1;	// Selección tarjeta #2 valor
+    this.selectOldPosix = -1; // Alamacen de posiciones
 	}
 }

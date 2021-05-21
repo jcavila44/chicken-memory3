@@ -1,0 +1,31 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Score</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-card class="scroll-card" scrollY="true">
+  <ion-card-content>
+    <ion-list-header lines="full">
+      <ion-label id="container">
+        You Score 500
+      </ion-label>
+    </ion-list-header>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-card-title class="center">Top Five</ion-card-title>
+      </ion-list-header>
+      <ion-item *ngFor="let player of data; let i = index">
+        <ion-label>{{player.name}}</ion-label>
+        <ion-note slot="end"
+          [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))">
+          {{player.score}}</ion-note>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<section class="center">
+  <ion-button routerLink="../app-dashboard" color="success">Play again</ion-button>
+  <ion-button color="light"></ion-button>
+  <ion-button color="danger">Exit</ion-button>
+</section>

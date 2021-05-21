@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="container p-4">
+    <ion-header>
+      <ion-toolbar>
+        <div class="mb-2 text-center">
+          <h3>Historico de jugadas para: <br />Argemiro Ermitage</h3>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <br />
+    <ngx-datatable
+      class="dark p-2"
+      [limit]="6"
+      [rows]="rows"
+      [rowHeight]="50"
+      [columns]="col"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [scrollbarH]="true"
+    >
+    </ngx-datatable>
+  </div>
+</ion-content>
