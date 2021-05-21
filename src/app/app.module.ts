@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ScoreFiveComponent } from './components/score-five/score-five.component';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -16,7 +17,7 @@ import { environment } from '../environments/environment';
 
 
 @NgModule({
-  declarations: [AppComponent, RegistroUsuarioComponent, DashboardComponent],
+  declarations: [AppComponent, RegistroUsuarioComponent, DashboardComponent, ScoreFiveComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

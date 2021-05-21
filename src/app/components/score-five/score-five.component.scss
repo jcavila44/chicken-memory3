@@ -16,3 +16,32 @@
         top: 50%;
         transform: translateY(-50%);
       }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      .color-1{
+        color: red;
+      }
+
+      .color-2{
+        color: orangered;
+      }
+
+      .color-3{
+        color: rgb(186, 186, 16);
+      }
+
+      .color-4{
+        color: green;
+      }
+
+      .color-5{
+        color: rgb(0, 51, 128);
+      }
+      .scroll-card {
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
