@@ -12,14 +12,24 @@
 
   <div align = "center">
     <h5>Turnos restantes: {{ userLife }}</h5>
-    6 parejas para ser ganador
 	</div>
 
   <ion-grid>
     
-    <ion-row>
-      <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
+    <ion-row *ngIf="userWin <= 0">
+      <ion-col align-self-center size="12">
+        <div align = "center">
+          <h3>¡Felicitaciones!</h3>
+          <h3>¡Has ganado!</h3>
 
+          <img [src] = "imageWin">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="userWin > 0">
+      <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
+        
         <img [src] = "imageBack"
           *ngIf = "c.pos != selectCard1pos && c.pos != selectCard2pos && c.val > -1"
           (click) = "selectCard(c.pos, c.val, i)"
@@ -33,7 +43,7 @@
           *ngIf = "c.pos == selectCard2pos && c.val > -1"
           class = "imagen-card">
 
-        <img *ngIf="c.val == -1" style = "visibility: hidden;">
+        <img [src] = "imageWhite" *ngIf="c.val == -1">
 
       </ion-col>
     </ion-row>
@@ -45,9 +55,24 @@
           <ion-button
             type="button"
             color="primary"
+            style="width: 90%"
             (click)="restartGame()">
             <ion-icon name="refresh-outline"></ion-icon>
               Reiniciar
+          </ion-button>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <br/>
+        <div align = "center" class="prueba">
+          <ion-button
+            type="button"
+            color="success"
+            style="width: 90%"
+            (click)="estartGame()">
+            <ion-icon name="trending-up-outline"></ion-icon>
+              Top Five
           </ion-button>
         </div>
       </ion-col>
