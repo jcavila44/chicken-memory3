@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 import { HomePage } from './home/home.page';
+import { UserHistoryComponent } from './components/user-history/user-history.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomePage },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'app-registro-usuario', component: RegistroUsuarioComponent },
   { path: 'app-dashboard', component: DashboardComponent },
   { path: 'app-score-five', component: ScoreFiveComponent },
+  { path: 'app-user-history', component: UserHistoryComponent },
   /*{
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
@@ -30,13 +32,6 @@ const routes: Routes = [
     path: 'verify-email',
     loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
-  { path: 'app-score-five', component: ScoreFiveComponent },
-
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-
 ];
 
 @NgModule({

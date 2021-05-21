@@ -8,15 +8,15 @@
             </div>
             <ion-item class="mb-3 p-0">
               <ion-label position="floating">Nombre</ion-label>
-              <ion-input type="text" formControlName="nombreUsuario" required></ion-input>
+              <ion-input type="text" formControlName="nombreUsuario" #nombreUsuario required></ion-input>
             </ion-item>
             <ion-item class="mb-3 p-0">
               <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" formControlName="emailUsuario" required></ion-input>
+              <ion-input type="email" formControlName="emailUsuario" #emailUsuario required (change)="validateRegisterUser(emailUsuario)"></ion-input>
             </ion-item>
             <ion-item class="p-0">
               <ion-label position="floating">Edad</ion-label>
-              <ion-input type="number" formControlName="edadUsuario" required></ion-input>
+              <ion-input type="number" formControlName="edadUsuario" #edadUsuario required></ion-input>
             </ion-item>
             <div class="col-12 col-md-12 text-center mt-4 p-0">
               <!-- <ion-button type="button" expand="block">Play</ion-button> -->
@@ -36,7 +36,7 @@
 
  <ion-content>
     <ion-row>
-      <ion-col>
+      <ion-col class="size-sm">
         <ion-button
          type="submit"
          color="danger"

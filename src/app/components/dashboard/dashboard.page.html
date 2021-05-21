@@ -1,6 +1,81 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Level 1</ion-title>
+    <ion-title>Chicken Memory</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content class = "background">
+
+  <div align = "center">
+		<h2>Encuentra las parejas para ganar</h2>
+	</div>
+
+  <div align = "center">
+    <h5>Turnos restantes: {{ userLife }}</h5>
+	</div>
+
+  <ion-grid>
+    
+    <ion-row *ngIf="userWin <= 0">
+      <ion-col align-self-center size="12">
+        <div align = "center">
+          <h3>¡Felicitaciones, has ganado!</h3>
+          <h3>Puntuación: {{ score }}</h3>
+
+          <img [src] = "imageWin">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="userWin > 0">
+      <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
+        
+        <img [src] = "imageBack"
+          *ngIf = "c.pos != selectCard1pos && c.pos != selectCard2pos && c.val > -1"
+          (click) = "selectCard(c.pos, c.val, i)"
+          class = "imagen-card">
+
+        <img [src] = "imageDir + images[c.val] + '.png'"
+          *ngIf = "c.pos == selectCard1pos && c.val > -1"
+          class = "imagen-card">
+        
+        <img [src] = "imageDir + images[c.val] + '.png'"
+          *ngIf = "c.pos == selectCard2pos && c.val > -1"
+          class = "imagen-card">
+
+        <img [src] = "imageWhite" *ngIf="c.val == -1">
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <br/>
+        <div align = "center">
+          <ion-button
+            type="button"
+            color="primary"
+            style="width: 90%"
+            (click)="restartGame()">
+            <ion-icon name="refresh-outline"></ion-icon>
+              Volver a jugar
+          </ion-button>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <br/>
+        <div align = "center" class="prueba">
+          <ion-button
+            type="button"
+            color="success"
+            style="width: 90%"
+            (click)="estartGame()">
+            <ion-icon name="trending-up-outline"></ion-icon>
+              Top Five
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
