@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from "../../shared/authentication-service";
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
   public selectCard2val = -1;	// Selección tarjeta #2 valor
   public selectOldPosix = -1; // Alamacen de posiciones
 
-  constructor() { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit() {
     this.restartGame();
@@ -55,8 +56,8 @@ export class DashboardComponent implements OnInit {
 
     if (this.selectCard1pos == -1 && !actOne) {
       this.selectCard1pos = pos;
-  	  this.selectCard1val = val;    
-      this.selectOldPosix = i;  
+  	  this.selectCard1val = val;
+      this.selectOldPosix = i;
     }
 
     if (this.selectCard1pos > -1 && this.selectCard2pos > -1) {
