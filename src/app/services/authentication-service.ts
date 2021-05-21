@@ -30,6 +30,7 @@ export class AuthenticationService {
         JSON.parse(localStorage.getItem('user'));
       }
     })
+
   }
 
   // Login in with email/password
@@ -77,23 +78,21 @@ export class AuthenticationService {
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
-
+   // Sign in with Gmail
+   FBAuth() {
+    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
+  }
   // Auth providers
   AuthLogin(provider) {
     return this.auth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['app-dashboard']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
       window.alert(error)
     })
-  }
-
-   // Sign in with Gmail
-   FBAuth() {
-    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
   }
 
 

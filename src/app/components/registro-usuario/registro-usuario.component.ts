@@ -1,3 +1,5 @@
+import { PlayersService } from './../../services/players.service';
+import { Player } from './../../models/player';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../../shared/authentication-service";
 import { Router } from "@angular/router";
@@ -10,10 +12,14 @@ import { ToastController } from '@ionic/angular';
 export class RegistroUsuarioComponent implements OnInit {
 
   validateRegister = false;
+
+  player: Player = new Player();
+
   constructor(
     public authService: AuthenticationService,
     public toastController: ToastController,
-    public router: Router
+    public router: Router,
+    private playersService: PlayersService
     ) { }
 
   ngOnInit() {
@@ -23,7 +29,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.authService.SignIn(emailUsuario.value, "*123456*")
     .then(async (res) => {
       if(this.authService.isEmailVerified) {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['app-dashboard']);
       } else {
         const toast = await this.toastController.create({
           message: 'Email no verificado',
@@ -54,6 +60,30 @@ export class RegistroUsuarioComponent implements OnInit {
         toast.present();
       }
     })
+  }
+
+  onPlay(nombreUsuario: any, emailUsuario: any, edadUsuario: any){
+    this.player.name = nombreUsuario.value;
+    this.player.age = edadUsuario.value;
+    this.player.email = emailUsuario.value;
+    this.authService.RegisterUser(this.player.email,"*123456*")
+    .then((res) => {
+      this.playersService.create(this.player).then(async (res) => {
+        this.authService.SendVerificationMail()
+        // this.router.navigate(['verify-email']);
+
+      const toast = await this.toastController.create({
+          message: 'Debe verificar el email',
+          color: 'tertiary',
+          duration: 2000
+        });
+        toast.present();
+
+      });
+    }).catch((error) => {
+      window.alert(error.message)
+    })
+
   }
 
 }
