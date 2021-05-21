@@ -4,6 +4,7 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { HomePage } from './home/home.page';
+import { UserHistoryComponent } from './components/user-history/user-history.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomePage },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   { path: 'app-registro-usuario', component: RegistroUsuarioComponent },
   { path: 'app-dashboard', component: DashboardComponent },
+  { path: 'app-user-history', component: UserHistoryComponent },
   /*{
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
