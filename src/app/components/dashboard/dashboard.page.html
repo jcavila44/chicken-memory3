@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Chicken Memory</ion-title>
+    <ion-item class="mb-3 p-0">
+      <ion-title>Chicken Memory</ion-title>
+      <ion-button color="danger" (click)="authService.SignOut()"><ion-icon name="power-outline"></ion-icon></ion-button>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +18,7 @@
 	</div>
 
   <ion-grid>
-    
+
     <ion-row *ngIf="userWin <= 0">
       <ion-col align-self-center size="12">
         <div align = "center">
@@ -29,7 +32,7 @@
 
     <ion-row *ngIf="userWin > 0">
       <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
-        
+
         <img [src] = "imageBack"
           *ngIf = "c.pos != selectCard1pos && c.pos != selectCard2pos && c.val > -1"
           (click) = "selectCard(c.pos, c.val, i)"
@@ -38,7 +41,7 @@
         <img [src] = "imageDir + images[c.val] + '.png'"
           *ngIf = "c.pos == selectCard1pos && c.val > -1"
           class = "imagen-card">
-        
+
         <img [src] = "imageDir + images[c.val] + '.png'"
           *ngIf = "c.pos == selectCard2pos && c.val > -1"
           class = "imagen-card">
