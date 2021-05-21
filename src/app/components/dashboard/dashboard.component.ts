@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   public cardsArray = [];	// Almacen de pares de tarjetas
   public userLife = 5;		// Total intentos por usuario
   public userWin = 6;     // Total pares para ganar
+  public score = 0;       // Puntaje obtenido
   public debugText = '';  // variable para mensaje de pantalla
 
   public imageDir = '../../assets/img/fruits/';
@@ -64,11 +65,13 @@ export class DashboardComponent implements OnInit {
           this.debugText = 'pareja encontrada';
           this.cardsArray.splice(this.selectOldPosix, 1, {pos: this.selectOldPosix, val: -1});
           this.cardsArray.splice(i, 1, {pos: i, val: -1});
+          this.score += 10;
           this.userWin -= 1;
           this.resetSelects();
         } else {
           this.debugText = 'Sigue intentando';
           this.userLife -= 1;
+          this.score -= 5;
           this.resetSelects();
 
           if (this.userLife <= 0) this.restartGame();
@@ -90,6 +93,7 @@ export class DashboardComponent implements OnInit {
   restartGame() {
     this.userLife = 5;
     this.userWin = 6;
+    this.score = 0;
     this.resetSelects();
     this.populateCards();
     this.shuffle(this.cardsArray);
