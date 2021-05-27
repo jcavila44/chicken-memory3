@@ -10,7 +10,7 @@ export class DashboardComponent implements OnInit {
 
   public cardsTotal = 12;	// Total tarjetas (divididas por 2)
   public cardsArray = [];	// Almacen de pares de tarjetas
-  public userLife = 5;		// Total intentos por usuario
+  public userLife = 15;		// Total intentos por usuario
   public userWin = 6;     // Total pares para ganar
   public score = 0;       // Puntaje obtenido
   public debugText = '';  // variable para mensaje de pantalla
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
   }
 
   restartGame() {
-    this.userLife = 5;
+    this.userLife = 15;
     this.userWin = 6;
     this.score = 0;
     this.resetSelects();
