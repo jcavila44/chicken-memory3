@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Blank {{authenticationService.LoggedData?.displayName}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,9 +19,9 @@
     <ion-button type="button" [routerLink]="['/','score-five']" class="btn-success">Top five</ion-button>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
-  
-  
-  
+
+
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +36,7 @@
       }
     </style>
   </head>
-  
-  
 
-  
+
+
+
