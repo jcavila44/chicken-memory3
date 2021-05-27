@@ -35,5 +35,4 @@ export class PlayersService {
   delete(): any {
     return this.player.remove();
   }
-
 }

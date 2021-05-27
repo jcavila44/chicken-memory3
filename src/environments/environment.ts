@@ -5,7 +5,8 @@
 export const environment = {
   path:{
     base: '/chicken-memory',
-    player:  '/player'
+    player:  '/player',
+    game: '/game'
   },
   production: false,
   firebaseConfig : {

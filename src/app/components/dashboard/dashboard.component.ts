@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from 'src/app/models/game';
+import { Player } from 'src/app/models/player';
+import { GamesService } from 'src/app/services/games.service';
+import { PlayersService } from 'src/app/services/players.service';
 import { AuthenticationService } from "../../shared/authentication-service";
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +24,7 @@ export class DashboardComponent implements OnInit {
   public imageBack = '../../assets/img/cards/back.png';
   public imageWhite = '../../assets/img/cards/backWhite.png';
   public imageWin = '../../assets/img/gif/userWin.gif';
+  public gameOver = '../../assets/img/gif/gameOver.gif';
   public images = ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6'];
 
   public selectCard1pos = -1;	// Selección tarjeta #1 posición
@@ -27,9 +33,21 @@ export class DashboardComponent implements OnInit {
   public selectCard2val = -1;	// Selección tarjeta #2 valor
   public selectOldPosix = -1; // Alamacen de posiciones
 
-  constructor(public authService: AuthenticationService) { }
+  public date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+
+  game: Game = new Game;
+  player: Player;
+
+  currentPlayer = JSON.parse(localStorage.getItem('user'));
+
+  constructor(public authService: AuthenticationService,
+              public gamesService: GamesService,
+              public playersService: PlayersService) {
+    
+  }
 
   ngOnInit() {
+    this.game.player_key = this.currentPlayer.uid;
     this.restartGame();
   }
 
@@ -63,19 +81,31 @@ export class DashboardComponent implements OnInit {
     if (this.selectCard1pos > -1 && this.selectCard2pos > -1) {
       setTimeout(() => {
         if (this.selectCard1val == this.selectCard2val) {
-          this.debugText = 'pareja encontrada';
           this.cardsArray.splice(this.selectOldPosix, 1, {pos: this.selectOldPosix, val: -1});
           this.cardsArray.splice(i, 1, {pos: i, val: -1});
           this.score += 10;
           this.userWin -= 1;
+
+          if (this.userWin == 0) {
+            this.getDate();
+            this.score += this.userLife * 10;
+
+            this.game.date = this.date;
+            this.game.score = this.score;
+            this.gamesService.create(this.game);
+          }
+
           this.resetSelects();
         } else {
-          this.debugText = 'Sigue intentando';
           this.userLife -= 1;
           this.score -= 5;
           this.resetSelects();
 
-          if (this.userLife <= 0) this.restartGame();
+          if (this.userLife <= 0) {
+            setTimeout(() => {
+              this.restartGame();
+            }, 5000)
+          }
         }
       }, 1000)
     }
@@ -91,8 +121,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  getDate(){
+    this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+  }
+
   restartGame() {
-    this.userLife = 15;
+    this.userLife = 5;
     this.userWin = 6;
     this.score = 0;
     this.resetSelects();

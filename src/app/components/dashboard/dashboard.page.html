@@ -9,29 +9,41 @@
 
 <ion-content class = "background">
 
-  <ion-section class="title">
+  <section class="title">
     <h2>Encuentra las parejas para ganar</h2>
-  </ion-section>
+  </section>
 
-  <ion-section class="title">
+  <section class="title">
     <h5>Turnos restantes: {{ userLife }}</h5>
-	</ion-section>
+	</section>
 
   <ion-grid>
 
     <ion-row *ngIf="userWin <= 0">
       <ion-col align-self-center size="12">
 
-        <ion-section class="title">
+        <section class="title">
           <h3>¡Felicitaciones, has ganado!</h3>
           <h3>Puntuación: {{ score }}</h3>
 
           <img [src] = "imageWin">
-        </ion-section>
+        </section>
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="userWin > 0">
+    <ion-row *ngIf="userLife <= 0">
+      <ion-col align-self-center size="12">
+
+        <section class="title">
+          <h3>¡Lo sentimos!</h3>
+          <h3>¡Sigue intentandolo!</h3>
+
+          <img [src] = "gameOver">
+        </section>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="userWin > 0 && userLife > 0">
       <ion-col align-self-center size="3" *ngFor="let c of cardsArray; let i = index">
 
         <img [src] = "imageBack"
@@ -55,7 +67,7 @@
     <ion-row>
       <ion-col>
         <br/>
-        <ion-section class="title">
+        <section class="title">
           <ion-button
             type="button"
             color="primary"
@@ -64,12 +76,12 @@
             <ion-icon name="refresh-outline"></ion-icon>
               Volver a jugar
           </ion-button>
-        </ion-section>
+        </section>
       </ion-col>
 
       <ion-col>
         <br/>
-        <ion-section class="title">
+        <section class="title">
           <ion-button
             type="button"
             color="success"
@@ -78,7 +90,7 @@
             <ion-icon name="trending-up-outline"></ion-icon>
               Top Five
           </ion-button>
-        </ion-section>
+        </section>
       </ion-col>
     </ion-row>
   </ion-grid>
