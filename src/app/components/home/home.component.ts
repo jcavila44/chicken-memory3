@@ -14,9 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      
       this.router.navigate(['app-registro-usuario'])
-
     }, 5000)
   }
 }
