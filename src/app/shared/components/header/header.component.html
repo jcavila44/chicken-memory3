@@ -1,0 +1,8 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank {{authenticationService.LoggedData?.displayName}}
+    </ion-title>
+    <ion-button color="danger" (click)="authenticationService.SignOut()"><ion-icon name="power-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>

@@ -68,6 +68,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.player.email = emailUsuario.value;
     this.authService.RegisterUser(this.player.email,"*123456*")
     .then((res) => {
+      this.player.uid = this.authService?.LoggedData?.uib;
       this.playersService.create(this.player).then(async (res) => {
         this.authService.SendVerificationMail()
         // this.router.navigate(['verify-email']);
