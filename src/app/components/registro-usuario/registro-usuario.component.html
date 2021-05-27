@@ -1,70 +1,84 @@
 <ion-content>
-    <div class="container">
-      <div class="row">
-        <div class="col-mb-12">
-          <form class="row">
-            <div class="mb-2 text-center">
-              <h3>Registro</h3>
-            </div>
-            <ion-item class="mb-3 p-0">
-              <ion-label position="floating">Nombre</ion-label>
-              <ion-input type="text" formControlName="nombreUsuario"  #nombreUsuario required></ion-input>
-            </ion-item>
-            <ion-item class="mb-3 p-0">
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" formControlName="emailUsuario" #emailUsuario required (change)="validateRegisterUser(emailUsuario)"></ion-input>
-              <!-- <ion-input type="email" formControlName="emailUsuario" #emailUsuario required></ion-input> -->
-            </ion-item>
-            <ion-item class="p-0">
-              <ion-label position="floating">Edad</ion-label>
-              <ion-input type="number" formControlName="edadUsuario" #edadUsuario required></ion-input>
-            </ion-item>
-            <div class="col-12 col-md-12 text-center mt-4 p-0">
-              <!-- <ion-button type="button" expand="block">Play</ion-button> -->
-              <ion-button
-                  type="button"
-                  color="primary"
-                  expand="block"
-                  (click)="onPlay(nombreUsuario,emailUsuario,edadUsuario)">
-                  <ion-icon name="play-outline"></ion-icon>
-                    Play
-              </ion-button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
- </ion-content>
+  <br/>
+  <ion-grid class="contenido">
+    <ion-row>
+      <ion-col>
+        <section class="center">
+          <img [src] = "title">
+        </section>
+      </ion-col>
+    </ion-row>
 
- <ion-content>
+    <ion-form>
+      <form class="row">
+
+        <div class="mb-2 text-center">
+          <h3>Registro</h3>
+        </div>
+
+        <ion-item class="mb-3 p-0">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" formControlName="nombreUsuario"  #nombreUsuario required></ion-input>
+        </ion-item>
+
+        <ion-item class="mb-3 p-0">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="emailUsuario" #emailUsuario required (change)="validateRegisterUser(emailUsuario)"></ion-input>
+          <!-- <ion-input type="email" formControlName="emailUsuario" #emailUsuario required></ion-input> -->
+        </ion-item>
+
+        <ion-item class="p-0">
+          <ion-label position="floating">Edad</ion-label>
+          <ion-input type="number" formControlName="edadUsuario" #edadUsuario required></ion-input>
+        </ion-item>
+        
+        <br/>
+          <!-- <ion-button type="button" expand="block">Play</ion-button> -->
+          <ion-button
+              type="button"
+              color="primary"
+              expand="block"
+              (click)="onPlay(nombreUsuario,emailUsuario,edadUsuario)">
+              <ion-icon name="play-outline"></ion-icon>
+                Play
+          </ion-button>
+        <br/>
+      </form>
+    </ion-form>
+
     <ion-row>
       <ion-col class="size-sm">
+          <ion-button
+            type="submit"
+            color="danger"
+            (click)="authService.GoogleAuth()"
+              expand="round">
+            <ion-icon name="logo-google"></ion-icon>
+                Login
+          </ion-button>
+      </ion-col>
+
+      <ion-col class="size-sm">
         <ion-button
-         type="submit"
-         color="danger"
-         (click)="authService.GoogleAuth()"
-          expand="round">
-         <ion-icon name="logo-google"></ion-icon>
+          type="submit"
+          color="primary"
+          (click)="authService.FBAuth()"
+            expand="round">
+          <ion-icon name="logo-facebook"></ion-icon>
             Login
         </ion-button>
+      </ion-col>
 
+      <ion-col class="size-sm">
         <ion-button
-        type="submit"
-        color="primary"
-        (click)="authService.FBAuth()"
-          expand="round">
-        <ion-icon name="logo-facebook"></ion-icon>
-          Login
-       </ion-button>
-
-       <ion-button
-        type="submit"
-        color="secondary"
-        (click)="authService.TwitterAuth()"
-          expand="round">
-        <ion-icon name="logo-twitter"></ion-icon>
-          Login
+          type="submit"
+          color="secondary"
+          (click)="authService.TwitterAuth()"
+            expand="round">
+          <ion-icon name="logo-twitter"></ion-icon>
+            Login
         </ion-button>
       </ion-col>
     </ion-row>
+  </ion-grid>
 </ion-content>

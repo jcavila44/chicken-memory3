@@ -3,6 +3,9 @@
 }
 
 ion-content {
+  --background: white;
+  --ion-text-color: black;
+
   div {
     height: 100%;
     width: 100%;
@@ -10,4 +13,8 @@ ion-content {
     justify-content: center;
     align-items: center;
   }
+ }
+
+ ion-item {
+   --background: white;
  }

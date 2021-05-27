@@ -14,6 +14,7 @@ export class RegistroUsuarioComponent implements OnInit {
   validateRegister = false;
 
   player: Player = new Player();
+  public title = '../../assets/img/gif/title.gif';
 
   constructor(
     public authService: AuthenticationService,
