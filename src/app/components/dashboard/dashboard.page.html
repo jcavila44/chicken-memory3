@@ -9,24 +9,25 @@
 
 <ion-content class = "background">
 
-  <div align = "center">
-		<h2>Encuentra las parejas para ganar</h2>
-	</div>
+  <ion-section class="title">
+    <h2>Encuentra las parejas para ganar</h2>
+  </ion-section>
 
-  <div align = "center">
+  <ion-section class="title">
     <h5>Turnos restantes: {{ userLife }}</h5>
-	</div>
+	</ion-section>
 
   <ion-grid>
 
     <ion-row *ngIf="userWin <= 0">
       <ion-col align-self-center size="12">
-        <div align = "center">
+
+        <ion-section class="title">
           <h3>¡Felicitaciones, has ganado!</h3>
           <h3>Puntuación: {{ score }}</h3>
 
           <img [src] = "imageWin">
-        </div>
+        </ion-section>
       </ion-col>
     </ion-row>
 
@@ -54,7 +55,7 @@
     <ion-row>
       <ion-col>
         <br/>
-        <div align = "center">
+        <ion-section class="title">
           <ion-button
             type="button"
             color="primary"
@@ -63,12 +64,12 @@
             <ion-icon name="refresh-outline"></ion-icon>
               Volver a jugar
           </ion-button>
-        </div>
+        </ion-section>
       </ion-col>
 
       <ion-col>
         <br/>
-        <div align = "center" class="prueba">
+        <ion-section class="title">
           <ion-button
             type="button"
             color="success"
@@ -77,7 +78,7 @@
             <ion-icon name="trending-up-outline"></ion-icon>
               Top Five
           </ion-button>
-        </div>
+        </ion-section>
       </ion-col>
     </ion-row>
   </ion-grid>

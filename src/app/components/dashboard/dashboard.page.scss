@@ -24,7 +24,11 @@ ion-col {
     //border-color: black; 
     //border-width: 2px; 
     //border-style: solid;
-  }
+}
+
+.title {
+    text-align: center;    
+}
 
 .imagen-card {
     width: 100%;
@@ -32,4 +36,3 @@ ion-col {
     border: solid 2px #000;
     border-radius: 12px;
 }
-
