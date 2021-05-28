@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
               public gamesService: GamesService,
               public playersService: PlayersService) {
     
+    console.log(this.gamesService.games);
   }
 
   ngOnInit() {
