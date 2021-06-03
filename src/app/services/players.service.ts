@@ -27,10 +27,18 @@ export class PlayersService {
     );
   }
 
+  getPlayerByKey(key: string){
+    this.playerDef = this.db.list("/player",ref => ref.orderByChild('uid').equalTo(key));
+    return this.playerDef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
+  }
+
   getPlayers(){
     return this.players;
   }
-
   create(player: Player): any {
     return this.players.push(player);
   }

@@ -1,6 +1,8 @@
+import { PlayersService } from 'src/app/services/players.service';
 import { Game } from 'src/app/models/game';
 import { GamesService } from 'src/app/services/games.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-score-five',
@@ -13,7 +15,8 @@ export class ScoreFiveComponent implements OnInit {
 
   gameScores: Game[];
 
-  constructor(public gamesService: GamesService) { }
+  constructor(public gamesService: GamesService,
+    public playersService: PlayersService) { }
 
   ngOnInit() {
 
@@ -21,11 +24,11 @@ export class ScoreFiveComponent implements OnInit {
       this.gameScores = data;
 
       this.gameScores.map((game)=>{
-        // this.GamesService.
-        console.log("game", game);
-      })
+         this.playersService.getPlayerByKey(game.player_key).subscribe((player)=>{
+           game.player = player[0];
+          });
 
-          console.log("Data", data);
+      })
       });
   }
 
