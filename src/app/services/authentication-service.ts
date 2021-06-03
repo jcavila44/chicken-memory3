@@ -1,10 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
-// import  { auth }  from 'firebase/app';
 import firebase from 'firebase/app';
 import { User } from "./../models/user";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 export class AuthenticationService {
   userData: any;
+  authState = new BehaviorSubject(false);
 
   constructor(
     public afStore: AngularFirestore,
@@ -25,6 +26,7 @@ export class AuthenticationService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
+        this.authState.next(true);
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -46,7 +48,7 @@ export class AuthenticationService {
   SendVerificationMail() {
     return this.auth.currentUser.then(u => u?.sendEmailVerification())
     .then(() => {
-      this.router.navigate(['verify-email']);
+      this.router.navigate(['app-verify-email']);
     })
   }
 
@@ -89,7 +91,12 @@ export class AuthenticationService {
     return this.auth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
+        setTimeout(() =>
+        {
           this.router.navigate(['app-dashboard']);
+          this.authState.next(true);
+        },
+        100);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -126,6 +133,7 @@ export class AuthenticationService {
     return this.auth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['app-registro-usuario']);
+      this.authState.next(false);
     })
   }
 

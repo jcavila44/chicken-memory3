@@ -30,18 +30,21 @@
         <ion-label position="floating">Edad</ion-label>
         <ion-input type="number" formControlName="edadUsuario" #edadUsuario required></ion-input>
       </ion-item>
-      
-      <br/>
-        <!-- <ion-button type="button" expand="block">Play</ion-button> -->
-        <ion-button
-            type="button"
-            color="primary"
-            expand="block"
-            (click)="onPlay(nombreUsuario,emailUsuario,edadUsuario)">
-            <ion-icon name="play-outline"></ion-icon>
-              Play
-        </ion-button>
-      <br/>
+      <ion-row>
+        <ion-col class="size-sm">
+          <ion-button
+          type="button"
+          color="primary"
+          expand="block"
+          (click)="onPlay(nombreUsuario,emailUsuario,edadUsuario)">
+          <ion-icon name="play-outline"></ion-icon>
+            Play
+          </ion-button>
+        </ion-col>
+    </ion-row>
+    </form>
+  </ion-grid>
+    <ion-grid class="contenido">
       <ion-row>
         <ion-col class="size-sm">
             <ion-button
@@ -53,7 +56,7 @@
                   Login
             </ion-button>
         </ion-col>
-  
+
         <ion-col class="size-sm">
           <ion-button
             type="submit"
@@ -64,7 +67,7 @@
               Login
           </ion-button>
         </ion-col>
-  
+
         <ion-col class="size-sm">
           <ion-button
             type="submit"
@@ -76,6 +79,5 @@
           </ion-button>
         </ion-col>
       </ion-row>
-    </form>
   </ion-grid>
 </ion-content>

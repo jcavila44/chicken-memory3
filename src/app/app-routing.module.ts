@@ -1,3 +1,4 @@
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -6,25 +7,17 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserHistoryComponent } from './components/user-history/user-history.component';
 
+import { AuthGuard } from './services/auth-guard.service';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'app-registro-usuario', component: RegistroUsuarioComponent },
-  { path: 'app-dashboard', component: DashboardComponent },
-  { path: 'app-score-five', component: ScoreFiveComponent },
-  { path: 'app-user-history', component: UserHistoryComponent },
-  /*{
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'verify-email',
-    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },*/
+  { path: 'app-verify-email', component: VerifyEmailComponent },
+  { path: 'app-dashboard', component: DashboardComponent ,canActivate: [AuthGuard]},
+  { path: 'app-score-five', component: ScoreFiveComponent ,canActivate: [AuthGuard]},
+  { path: 'app-user-history', component: UserHistoryComponent ,canActivate: [AuthGuard]},
+  { path: '**', component: RegistroUsuarioComponent },
 ];
 
 @NgModule({

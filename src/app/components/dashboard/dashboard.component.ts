@@ -38,8 +38,6 @@ export class DashboardComponent implements OnInit {
   game: Game = new Game;
   player: Player;
 
-  currentPlayer = JSON.parse(localStorage.getItem('user'));
-
   constructor(public authService: AuthenticationService,
               public gamesService: GamesService,
               public playersService: PlayersService) {
@@ -48,7 +46,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.game.player_key = this.currentPlayer.uid;
+    this.game.player_key = this.authService.LoggedData.uid;
     this.restartGame();
   }
 

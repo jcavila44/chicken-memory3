@@ -69,18 +69,19 @@ export class RegistroUsuarioComponent implements OnInit {
     this.player.email = emailUsuario.value;
     this.authService.RegisterUser(this.player.email,"*123456*")
     .then((res) => {
-      this.player.uid = this.authService?.LoggedData?.uib;
+      this.player.uid = res.user.uid;
       this.playersService.create(this.player).then(async (res) => {
-        this.authService.SendVerificationMail()
-        // this.router.navigate(['verify-email']);
+        this.authService.SendVerificationMail().then(async ()=>{
+          const toast = await this.toastController.create({
+            message: 'Debe verificar el email',
+            color: 'tertiary',
+            duration: 2000
+          });
+          toast.present();
+        }).catch((err)=>{
 
-      const toast = await this.toastController.create({
-          message: 'Debe verificar el email',
-          color: 'tertiary',
-          duration: 2000
         });
-        toast.present();
-
+        // this.router.navigate(['app-verify-email']);
       });
     }).catch((error) => {
       window.alert(error.message)

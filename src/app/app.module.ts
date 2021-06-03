@@ -1,3 +1,4 @@
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,7 @@ import { environment } from '../environments/environment';
 
 
 @NgModule({
-  declarations: [AppComponent, RegistroUsuarioComponent, DashboardComponent, UserHistoryComponent, ScoreFiveComponent, HeaderComponent, HomeComponent],
+  declarations: [AppComponent, RegistroUsuarioComponent, DashboardComponent, UserHistoryComponent, ScoreFiveComponent, HeaderComponent, HomeComponent, VerifyEmailComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

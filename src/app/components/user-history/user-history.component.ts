@@ -43,6 +43,7 @@ export class UserHistoryComponent implements OnInit {
 
 
   async getGameshistory(){
+
       this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
         this.player = user[0];
         console.log(this.player.key);
