@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <div class="mb-2 text-center">
-          <h3>Historico de jugadas para: <br />Argemiro Ermitage</h3>
+          <h3>Historico de jugadas para: <br />{{nameUser}}</h3>
         </div>
       </ion-toolbar>
     </ion-header>
@@ -22,3 +22,9 @@
     </ngx-datatable>
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <!-- <ion-button expand="block" [color]="buttonCustomColor" routerLink="../app-score-five">Volver al top 5</ion-button> -->
+    <ion-button expand="block" [color]="buttonCustomColor" routerLink="../app-score-five">👈🏼 Volver al top 5</ion-button>
+  </ion-toolbar>
+</ion-footer>
