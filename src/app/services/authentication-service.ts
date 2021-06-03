@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 // import  { auth }  from 'firebase/app';
 import firebase from 'firebase/app';
-import { User } from "../models/user";
+import { User } from "./../models/user";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -30,7 +30,6 @@ export class AuthenticationService {
         JSON.parse(localStorage.getItem('user'));
       }
     })
-
   }
 
   // Login in with email/password
@@ -68,6 +67,12 @@ export class AuthenticationService {
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
+    // Returns true when user is looged in
+    get LoggedData(): any {
+      const user = JSON.parse(localStorage.getItem('user'));
+      return (user !== null && user.emailVerified !== false) ? user : false;
+    }
+
   // Returns true when user's email is verified
   get isEmailVerified(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -78,10 +83,7 @@ export class AuthenticationService {
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
-   // Sign in with Gmail
-   FBAuth() {
-    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
-  }
+
   // Auth providers
   AuthLogin(provider) {
     return this.auth.signInWithPopup(provider)
@@ -95,6 +97,14 @@ export class AuthenticationService {
     })
   }
 
+   // Sign in with faceboock
+  FBAuth() {
+    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
+  }
+   // Sign in with twitter
+  TwitterAuth() {
+    return this.AuthLogin(new firebase.auth.TwitterAuthProvider());
+  }
 
   // Store user in localStorage
   SetUserData(user) {

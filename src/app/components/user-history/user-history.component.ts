@@ -1,9 +1,14 @@
+import { Game } from 'src/app/models/game';
+import { PlayersService } from 'src/app/services/players.service';
+import { AuthenticationService } from './../../services/authentication-service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { HistoryService } from '../../services/history.service';
-import { Game } from '../../models/game';
 import { element } from 'protractor';
+import { map } from 'rxjs/operators';
+import { Player } from 'src/app/models/player';
+
 
 
 export interface USERS {
@@ -21,56 +26,29 @@ export class UserHistoryComponent implements OnInit {
   public Users: USERS;
   public col: any;
   public rows: any;
-  public game: Game;
+  public games: Game[];
+  public player: Player;
 
   constructor(
     private httpClient: HttpClient,
-    public historyService: HistoryService
+    public historyService: HistoryService,
+    public autService: AuthenticationService,
+    public playersService: PlayersService
   ) {
-
-
-    this.col = [
-      { name: 'Fecha' },
-      { name: 'Score' }
-    ];
-
-    const keyuser = '6thkQAv7FiV2UBUBcvQF95HVLJJ2';
-
-
-    // this.historyService.games.valueChanges().subscribe(element => {
-    //   console.log(element);
-    // });
-
-    let gamerByUSer = this.historyService.getGamesByUser(keyuser);
-    console.log("filtro");
-    console.log(gamerByUSer);
-
-
-    // this.rows = gamerByUSer['data'];
-    // console.log(gamerByUSer);
-
-
-
-
-
-
-
-
-    // gamerByUSer.forEach(element => {
-    //   // this.rows = element  
-    //   console.log(element);
-
-    // });
-    // console.log(this.historyService.getGamesByUser(keyuser));
-
-    // this.rows = this.historyService.getGamesByUser(keyuser);
-
-    // this.httpClient.get<USERS>('../../assets/users.json')
-    //   .subscribe((response) => {
-    //     // console.log(response)
-    //     this.rows = response.users;
-    //   });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getGameshistory();
+  }
+
+
+  async getGameshistory(){
+      this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
+        this.player = user[0];
+        console.log(this.player.key);
+        this.historyService.getGamesByUser(this.player.key).subscribe(data => {
+            this.games = data;
+        });
+      });
+  }
 }

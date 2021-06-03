@@ -3,7 +3,7 @@ import { Game } from 'src/app/models/game';
 import { Player } from 'src/app/models/player';
 import { GamesService } from 'src/app/services/games.service';
 import { PlayersService } from 'src/app/services/players.service';
-import { AuthenticationService } from "../../shared/authentication-service";
+import { AuthenticationService } from "../../services/authentication-service";
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
   constructor(public authService: AuthenticationService,
               public gamesService: GamesService,
               public playersService: PlayersService) {
-    
+
     console.log(this.gamesService.games);
   }
 
