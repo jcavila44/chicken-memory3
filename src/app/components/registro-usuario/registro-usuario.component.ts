@@ -71,16 +71,7 @@ export class RegistroUsuarioComponent implements OnInit {
     .then((res) => {
       this.player.uid = res.user.uid;
       this.playersService.create(this.player).then(async (res) => {
-        this.authService.SendVerificationMail().then(async ()=>{
-          const toast = await this.toastController.create({
-            message: 'Debe verificar el email',
-            color: 'tertiary',
-            duration: 2000
-          });
-          toast.present();
-        }).catch((err)=>{
-
-        });
+        this.authService.SendVerificationMail();
         // this.router.navigate(['app-verify-email']);
       });
     }).catch((error) => {
