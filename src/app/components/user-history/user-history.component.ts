@@ -21,6 +21,7 @@ export interface USERS {
   styleUrls: ['./user-history.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class UserHistoryComponent implements OnInit {
 
   public Users: USERS;
@@ -28,6 +29,8 @@ export class UserHistoryComponent implements OnInit {
   public rows: any;
   public games: Game[];
   public player: Player;
+  public nameUser: any;
+  public buttonCustomColor: string = 'primary';
 
   constructor(
     private httpClient: HttpClient,
@@ -42,14 +45,37 @@ export class UserHistoryComponent implements OnInit {
   }
 
 
-  async getGameshistory(){
+  async getGameshistory() {
 
-      this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
-        this.player = user[0];
-        console.log(this.player.key);
-        this.historyService.getGamesByUser(this.player.key).subscribe(data => {
-            this.games = data;
-        });
+
+    this.col = [
+      { name: 'date' },
+      { name: 'score' }
+    ];
+
+    this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
+      this.player = user[0];
+
+      this.nameUser = this.capitalizarPalabras(this.player.name);
+      console.log(this.player);
+
+      this.historyService.getGamesByUser(this.player.uid).subscribe(data => {
+        this.games = data;
+
+        this.rows = this.games;
+        console.log(this.games);
+
+
       });
+    });
+  }
+
+
+  capitalizarPalabras(data): string {
+    return data.toLowerCase()
+      .trim()
+      .split(' ')
+      .map(v => v[0].toUpperCase() + v.substr(1))
+      .join(' ');
   }
 }

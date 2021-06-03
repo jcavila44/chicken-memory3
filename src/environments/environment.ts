@@ -3,13 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  path:{
+  path: {
     base: '/chicken-memory',
-    player:  '/player',
-    game: '/game'
+    player: '/player',
+    game: '/game',
+    history: 'app-user-history',
   },
   production: false,
-  firebaseConfig : {
+  firebaseConfig: {
     apiKey: "AIzaSyCP91m5a1Oq2CWskwewD2I3z2BjvoOE4xc",
     authDomain: "chicken-memory-ecd54.firebaseapp.com",
     databaseURL: "https://chicken-memory-ecd54-default-rtdb.firebaseio.com/",
