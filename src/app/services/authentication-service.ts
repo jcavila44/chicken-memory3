@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Injectable, NgZone } from '@angular/core';
 import firebase from 'firebase/app';
 import { User } from "./../models/user";
@@ -5,6 +6,8 @@ import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { ToastController } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,8 @@ export class AuthenticationService {
     public ngFireAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
-    public auth: AngularFireAuth
+    public auth: AngularFireAuth,
+    public toastController: ToastController,
   ) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
@@ -46,9 +50,16 @@ export class AuthenticationService {
 
   // Email verification when new user register
   SendVerificationMail() {
-    return this.auth.currentUser.then(u => u?.sendEmailVerification())
-    .then(() => {
-      this.router.navigate(['app-verify-email']);
+    return this.auth.currentUser.then(
+      u => u?.sendEmailVerification())
+    .then(async() => {
+      const toast = await this.toastController.create({
+        message: 'Debe verificar el email',
+        color: 'tertiary',
+        duration: 2000
+      });
+      toast.present();
+      // this.router.navigate(['app-verify-email']);
     })
   }
 
