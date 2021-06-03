@@ -15,10 +15,10 @@
 <ion-content>
   <ion-card>
     <ion-list>
-      <ion-item *ngFor="let player of data; let i = index">
-        <ion-label>{{player.name}}</ion-label>
+      <ion-item *ngFor="let player of gameScores; let i = index">
+        <ion-label>{{player.key}}</ion-label>
         <ion-note slot="end"
-          [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))">
+          [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))" (click)="onClick(player.key)">
           {{player.score}}</ion-note>
       </ion-item>
     </ion-list>

@@ -22,12 +22,15 @@ export class GamesService {
   }
 
   getGamesByScore(){
-    this.games = this.db.list(environment.path.game,ref => ref.orderByChild('score'));
+    this.games = this.db.list(environment.path.game,ref => ref.orderByChild('score').limitToLast(5));
     return this.games.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     );
+    // .subscribe((data) =>{
+    //     console.log("Data", data);
+    // });
   }
 
   create(game: Game): any {
