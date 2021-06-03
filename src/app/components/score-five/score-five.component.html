@@ -3,18 +3,18 @@
     <ion-title>Score</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-card class="scroll-card" scrollY="true">
-  <ion-card-content>
-    <ion-list-header lines="full">
-      <ion-label id="container">
-        You Score 500
-      </ion-label>
-    </ion-list-header>
+<ion-list-header lines="full">
+  <ion-label id="container">
+    You Score 500
+  </ion-label>
+</ion-list-header>
 
+<ion-list-header>
+  <ion-card-title class="center">Top Five</ion-card-title>
+</ion-list-header>
+<ion-content>
+  <ion-card>
     <ion-list>
-      <ion-list-header>
-        <ion-card-title class="center">Top Five</ion-card-title>
-      </ion-list-header>
       <ion-item *ngFor="let player of data; let i = index">
         <ion-label>{{player.name}}</ion-label>
         <ion-note slot="end"
@@ -22,10 +22,24 @@
           {{player.score}}</ion-note>
       </ion-item>
     </ion-list>
-  </ion-card-content>
-</ion-card>
+  </ion-card>
+</ion-content>
 <section class="center">
-  <ion-button routerLink="../app-dashboard" color="success">Play again</ion-button>
-  <ion-button color="light"></ion-button>
-  <ion-button color="danger">Exit</ion-button>
+  <ion-row>
+    <ion-col class="size-sm">
+      <ion-button routerLink="../app-dashboard" type="submit" color="secondary" expand="round">
+        <ion-icon name="reload-circle-outline"></ion-icon>
+        Play again
+      </ion-button>
+    </ion-col>
+
+    <ion-col class="size-sm">
+      <ion-button type="submit" color="danger" expand="round">
+        <ion-icon name="exit-outline"></ion-icon>
+        Exit
+      </ion-button>
+    </ion-col>
+
+
+  </ion-row>
 </section>
