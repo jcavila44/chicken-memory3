@@ -7,7 +7,7 @@
 
     <ion-card>
       <ion-list>
-        <ion-item *ngFor="let player of gameScores; let i = index">
+        <ion-item *ngFor="let player of (gameScores )?.slice().reverse(); let i = index">
           <ion-label  (click)="onClick(player.player_key)">{{player?.player?.name}}</ion-label>
           <ion-note slot="end"
             [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))" (click)="onClick(player.player_key)">
