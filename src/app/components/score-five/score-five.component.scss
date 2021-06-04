@@ -1,4 +1,9 @@
-
+ion-content.background {
+  --background: white;
+  --ion-text-color: black;
+  
+  //--overflow: hidden;
+}
 
     * {
         font-size: 1.0rem;
