@@ -3,43 +3,31 @@
     <ion-title>Score</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-list-header lines="full">
-  <ion-label id="container">
-    You Score 500
-  </ion-label>
-</ion-list-header>
 
-<ion-list-header>
-  <ion-card-title class="center">Top Five</ion-card-title>
-</ion-list-header>
-<ion-content>
-  <ion-card>
-    <ion-list>
-      <ion-item *ngFor="let player of gameScores; let i = index">
-        <ion-label>{{player?.player?.name}}</ion-label>
-        <ion-note slot="end"
-          [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))" (click)="onClick(player.key)">
-          {{player.score}}</ion-note>
-      </ion-item>
-    </ion-list>
-  </ion-card>
-</ion-content>
-<section class="center">
-  <ion-row>
-    <ion-col class="size-sm">
-      <ion-button routerLink="../app-dashboard" type="submit" color="secondary" expand="round">
-        <ion-icon name="reload-circle-outline"></ion-icon>
-        Play again
-      </ion-button>
-    </ion-col>
+  <ion-content class = "background">
+    <ion-list-header>
+      <ion-card-title class="center">Top Five</ion-card-title>
+    </ion-list-header>
 
-    <ion-col class="size-sm">
-      <ion-button type="submit" color="danger" expand="round">
-        <ion-icon name="exit-outline"></ion-icon>
-        Exit
-      </ion-button>
-    </ion-col>
+    <ion-card>
+      <ion-list>
+        <ion-item *ngFor="let player of gameScores; let i = index">
+          <ion-label>{{player?.player?.name}}</ion-label>
+          <ion-note slot="end"
+            [className]="(i==0) ? 'color-1' : ((i==1) ? 'color-2':((i==2) ? 'color-3':((i==3) ? 'color-4':'color-5')))" (click)="onClick(player.key)">
+            {{player.score}}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card>
 
-
-  </ion-row>
-</section>
+    <section class="center text-center">
+      <ion-row>
+        <ion-col class="size-sm">
+          <ion-button routerLink="../app-dashboard" type="submit" color="secondary" expand="round">
+            <ion-icon name="reload-circle-outline"></ion-icon>
+            Play again
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </section>
+  </ion-content>

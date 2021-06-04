@@ -11,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreFiveComponent implements OnInit {
   data = [{name:'diego',score:99999},{name:'vivi',score:79999},{name:'devil',score:69999},{name:'carol',score:49999},{name:'jugadorx',score:39999}]
-
+  
+  public col: any;
+  public rows: any;
 
   gameScores: Game[];
 
@@ -19,7 +21,6 @@ export class ScoreFiveComponent implements OnInit {
     public playersService: PlayersService) { }
 
   ngOnInit() {
-
     this.gamesService.getGamesByScore().subscribe((data) =>{
       this.gameScores = data;
 
@@ -33,7 +34,5 @@ export class ScoreFiveComponent implements OnInit {
   }
 
   onClick(key_game: string){
-
   }
-
 }
