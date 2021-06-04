@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'app-verify-email', component: VerifyEmailComponent },
   { path: 'app-dashboard', component: DashboardComponent ,canActivate: [AuthGuard]},
   { path: 'app-score-five', component: ScoreFiveComponent ,canActivate: [AuthGuard]},
-  { path: 'app-user-history', component: UserHistoryComponent ,canActivate: [AuthGuard]},
+  { path: 'app-user-history/:key', component: UserHistoryComponent ,canActivate: [AuthGuard]},
   { path: '**', component: RegistroUsuarioComponent },
 ];
 

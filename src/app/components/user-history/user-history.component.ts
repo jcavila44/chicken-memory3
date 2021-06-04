@@ -8,6 +8,7 @@ import { HistoryService } from '../../services/history.service';
 import { element } from 'protractor';
 import { map } from 'rxjs/operators';
 import { Player } from 'src/app/models/player';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -32,20 +33,28 @@ export class UserHistoryComponent implements OnInit {
   public nameUser: any;
   public buttonCustomColor: string = 'primary';
 
+  public key_player: any = "";
+
   constructor(
     private httpClient: HttpClient,
     public historyService: HistoryService,
     public autService: AuthenticationService,
-    public playersService: PlayersService
+    public playersService: PlayersService,
+    private _activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
-    this.getGameshistory();
+    this._activatedRoute.params.subscribe(params => {
+      this.key_player = params['key'];
+      console.log(params['key'])
+      this.getGameshistory(params['key']);
+   });
+
   }
 
 
-  async getGameshistory() {
+  async getGameshistory(key: string) {
 
 
     this.col = [
@@ -53,7 +62,8 @@ export class UserHistoryComponent implements OnInit {
       { name: 'score' }
     ];
 
-    this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
+    // this.playersService.getPlayer(this.autService.LoggedData.uid).subscribe(user => {
+    this.playersService.getPlayer(key).subscribe(user => {
       this.player = user[0];
 
       this.nameUser = this.capitalizarPalabras(this.player.name);

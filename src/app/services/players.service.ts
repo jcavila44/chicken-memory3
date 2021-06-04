@@ -28,6 +28,7 @@ export class PlayersService {
   }
 
   getPlayerByKey(key: string){
+    // console.log(key);
     this.playerDef = this.db.list("/player",ref => ref.orderByChild('uid').equalTo(key));
     return this.playerDef.snapshotChanges().pipe(
       map(changes =>

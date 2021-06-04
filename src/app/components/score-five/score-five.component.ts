@@ -2,6 +2,7 @@ import { PlayersService } from 'src/app/services/players.service';
 import { Game } from 'src/app/models/game';
 import { GamesService } from 'src/app/services/games.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,24 +17,23 @@ export class ScoreFiveComponent implements OnInit {
   gameScores: Game[];
 
   constructor(public gamesService: GamesService,
-    public playersService: PlayersService) { }
+    public playersService: PlayersService,
+    public router :Router) { }
 
   ngOnInit() {
 
     this.gamesService.getGamesByScore().subscribe((data) =>{
       this.gameScores = data;
-
-      this.gameScores.map((game)=>{
+      this.gameScores.map((game,idx)=>{
          this.playersService.getPlayerByKey(game.player_key).subscribe((player)=>{
-           game.player = player[0];
+           this.gameScores[idx].player = player[0];
           });
-
       })
       });
   }
 
   onClick(key_game: string){
-
+    this.router.navigate(['app-user-history', key_game]);
   }
 
 }
